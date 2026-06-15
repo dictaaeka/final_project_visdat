@@ -396,7 +396,7 @@ function getField (field) {
 
 // data ringkasan perpulai/rata-rata jumlah_sep
 const pulauList = [...new Set(dataPoverty.map(d => d.pulau))];
-const dataPulai = pulauList.map(pulau => {
+const dataPulau = pulauList.map(pulau => {
     const provs = dataPoverty.filter(d => d.pulau === pulau);
     const avg   = provs.reduce((s, d) => s + (d.jumlah_sep || 0), 0) / provs.length;
     return { pulau, avg: Math.round(avg * 100) / 100, jumlah_provinsi: provs.length };
@@ -404,7 +404,7 @@ const dataPulai = pulauList.map(pulau => {
 
 // top 10 provinsi termiskin (Sept 2024)
 const top10Termiskin = [...dataPoverty]
-    .sort((a, b) => (b.jumlah_sep || 0) - (A.jumlah_sep || 0))
+    .sort((a, b) => (b.jumlah_sep || 0) - (a.jumlah_sep || 0))
     .slice(0, 10);
 
 // top 10 provinsi terkaya (Sept 2024)

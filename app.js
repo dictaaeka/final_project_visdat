@@ -26,7 +26,7 @@ function filterByPulau(pulau) {
     }
 
     // palet warna
-    const WARNA_PULAU = [
+    const warna_pulau = [
         "#e6a817", /* emas      — Sumatera        */
         "#3b82f6", /* biru      — Jawa            */
         "#22c55e", /* hijau     — Bali & NT       */
@@ -82,7 +82,7 @@ function filterByPulau(pulau) {
     });
 
     // chart 1: tingkat kemiskinan per provinsi (bar chart)
-    const ctxBar = document.getElementById("chartBar").getContext("2d");
+    const ctxBar = document.getElementById("barChart").getContext("2d");
 
     // buat data bar(pulau)
     function buatDataBar(pulau = "semua") {
@@ -150,9 +150,9 @@ function filterByPulau(pulau) {
     });
 
     // doughnut chart 
-    const ctxDonut = document.getElementById("chartDoughnut").getContext("2d");
+    const ctxDonut = document.getElementById("doughnutChart").getContext("2d");
 
-    /* dataPulau sudah disiapkan di data.js (rata-rata per pulau) */
+    /* dataPoverty sudah disiapkan di data.js (rata-rata per pulau) */
     const chartDoughnut = new Chart(ctxDonut, {
         type: "doughnut",
 
@@ -160,7 +160,7 @@ function filterByPulau(pulau) {
             labels: dataPulau.map(d => d.pulau),    /* nama pulau */
             datasets: [{
                 data: dataPulau.map(d => d.avg),   /* rata-rata % kemiskinan */
-                backgroundColor: WARNA_PULAU,
+                backgroundColor: warna_pulau,
                 borderColor: "#161b22",  /* warna celah antar irisan = warna background */
                 borderWidth: 3,
                 hoverOffset: 10,         /* irisan sedikit keluar saat dihover */
@@ -201,7 +201,7 @@ function filterByPulau(pulau) {
     });
 
     // line chart
-    const ctxLine = document.getElementById("chartLine").getContext("2d");
+    const ctxLine = document.getElementById("lineChart").getContext("2d");
 
     function buatDataLine(pulau = "semua") {
         const filtered = filterByPulau(pulau);

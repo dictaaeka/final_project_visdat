@@ -29,9 +29,9 @@
     /* teks sekunder / label kecil */
 
     /* typography */
-    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
     /* untuk judul besar */
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
     /* untuk teks biasa dan data */
 
     /*ukuran dan jarak*/

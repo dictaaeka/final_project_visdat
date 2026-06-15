@@ -7,7 +7,7 @@
     <title>Dashboard Kemiskinan Indonesia Tahun 2024</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <!-- chart js-->
@@ -60,14 +60,14 @@
         <div class="container">
             <div class="filter-bar">
                 <label for="filter-pulau" class="filter-label">Tampilkan Wilayah:</label>
-                <select id="filter-pulau" class="flter-select">
+                <select id="filter-pulau" class="filter-select">
                     <option value="semua">Semua Provinsi</option>
-                    <option value="sumatera">Sumatera</option>
-                    <option value="java">Jawa</option>
-                    <option value="bali_dan_nusa_tenggara">Bali &amp; Nusa Tenggara</option>
-                    <option value="kalimantan">Kalimantan</option>
-                    <option value="sulawesi">Sulawesi</option>
-                    <option value="maluku_dan_papua">Maluku &amp;Papua</option>
+                    <option value="Sumatera">Sumatera</option>
+                    <option value="Jawa">Jawa</option>
+                    <option value="Bali & Nusa Tenggara">Bali & Nusa Tenggara</option>
+                    <option value="Kalimantan">Kalimantan</option>
+                    <option value="Sulawesi">Sulawesi</option>
+                    <option value="Maluku & Papua">Maluku & Papua</option>
                 </select>
             </div>
         </div>
@@ -121,7 +121,7 @@
                         </p>
                     </div>
                     <div class="chart-wrap">
-                        <canvas id="chartLine"></canvas>
+                        <canvas id="lineChart"></canvas>
                     </div>
                 </div>
             </div>
