@@ -1,0 +1,398 @@
+/* reset variabel nama */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* palet warna */
+    --clr-bg: #0d1117;
+    /* background halaman — biru-hitam gelap */
+    --clr-surface: #161b22;
+    /* warna card/panel */
+    --clr-border: #21262d;
+    /* garis tepi card */
+    --clr-accent: #e6a817;
+    /* kuning emas — warna utama aksen */
+    --clr-accent2: #3b82f6;
+    /* biru — aksen kedua (chart line) */
+    --clr-danger: #ef4444;
+    /* merah — kemiskinan tinggi */
+    --clr-good: #22c55e;
+    /* hijau — kemiskinan rendah */
+    --clr-text: #e6edf3;
+    /* teks utama */
+    --clr-muted: #8b949e;
+    /* teks sekunder / label kecil */
+
+    /* typography */
+    --font-display: 'Instrument Serif', Georgia, serif;
+    /* untuk judul besar */
+    --font-body: 'Inter', system-ui, sans-serif;
+    /* untuk teks biasa dan data */
+
+    /*ukuran dan jarak*/
+    --radius: 12px;
+    --radius-sm: 6px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+html {
+    scroll-behavior: smooth;
+    /*spy scroll halus kl pakai anchor link*/
+}
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* layout containder & grid */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* grid 2 utk kolom baris chart (bar&donut) */
+.charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* dua kolom sama lebar */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* chart wide = 2/3, chart normal = 1/3 */
+.chart-card--wide {
+    grid-column: span 1;
+    flex: 2;
+}
+
+/* chart full-width = satu baris penuh */
+.chart-card--full {
+    grid-column: 1 / -1;
+}
+
+/* header (judul + deskripsi dashboard) */
+.site-header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--clr-border);
+    position: relative;
+    overflow: hidden;
+}
+
+/* efek lingkaran cahaya diblkg header */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(230, 168, 23, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+/* badge kecil diatas judul */
+.header-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    border: 1px solid rgba(230, 168, 23, 0.35);
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+}
+
+/* judul utama pakai font serif, trs italic utk kata kedua */
+.site-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 72px);
+    /* otomatis menyesuaikan lebar layar */
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--clr-text);
+    margin-bottom: 16px;
+}
+
+/* dalam judul pakai warna emas */
+.site-title em {
+    font-style: italic;
+    color: var(--clr-accent);
+}
+
+.site-desc {
+    font-size: 15px;
+    color: var(--clr-muted);
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* KPI Cards */
+.kpi-section {
+    padding: 36px 0;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* tiga kolom rata */
+    gap: 16px;
+}
+
+.kpi-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* efek hover untuk card KPI */
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+/* warna merah utk KPI bahaya */
+.kpi-card--danger {
+    border-left: 3px solid var(--clr-danger);
+}
+
+/* warna hijau utk KPI baik */
+.kpi-card--good {
+    border-left: 3px solid var(--clr-good);
+}
+
+.kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clr-muted);
+}
+
+/* angka besar KPI */
+.kpi-value {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--clr-accent);
+    line-height: 1;
+}
+
+.kpi-card--danger .kpi-value {
+    color: var(--clr-danger);
+}
+
+.kpi-card--good .kpi-value {
+    color: var(--clr-good);
+}
+
+.kpi-unit {
+    font-size: 13px;
+    color: var(--clr-muted);
+}
+
+/* filter dropdown */
+.filter-section {
+    padding-bottom: 28px;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-label {
+    font-size: 13px;
+    color: var(--clr-muted);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.filter-select {
+    background: var(--clr-surface);
+    color: var(--clr-text);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* highlight border saat fokus */
+.filter-select:focus {
+    border-color: var(--clr-accent);
+}
+
+/* chart card */
+.main-content {
+    padding-bottom: 48px;
+}
+
+.chart-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    /* Animasi fade-in saat pertama muncul (syarat tugas: CSS animation) */
+    animation: fadeInUp 0.5s ease both;
+}
+
+.chart-card-header {
+    margin-bottom: 20px;
+}
+
+.chart-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--clr-text);
+    margin-bottom: 4px;
+}
+
+.chart-subtitle {
+    font-size: 12px;
+    color: var(--clr-muted);
+}
+
+/* pembungkus canvas biar chart nya gk overflow */
+.chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 320px;
+}
+
+/* supaya doughnutnya proporsional */
+.chart-wrap--donut {
+    height: 280px;
+}
+
+/* footer utk informasi sumber data */
+.site-footer {
+    border-top: 1px solid var(--clr-border);
+    padding: 28px 0;
+    text-align: center;
+}
+
+.footer-source {
+    font-size: 13px;
+    color: var(--clr-muted);
+    margin-bottom: 6px;
+}
+
+.footer-source a {
+    color: var(--clr-accent);
+    text-decoration: none;
+}
+
+.footer-source a:hover {
+    text-decoration: underline;
+}
+
+.footer-note {
+    font-size: 12px;
+    color: var(--clr-border);
+}
+
+/* animasi */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        /* mulai dari 20px di bawah */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* kembali ke posisi normal */
+    }
+}
+
+/* delay animasi tiap card spy muncul nya gantian */
+.chart-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.chart-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.chart-card:nth-child(3) {
+    animation-delay: 0.25s;
+}
+
+/* matikan animasi utk pengguna yg sensitif thd gerakan */
+@media (prefers-reduced-motion: reduce) {
+    .chart-card {
+        animation: none;
+    }
+}
+
+/* tampilan HP */
+@media (max-width: 768px) {
+
+    /* header lebih compact di HP */
+    .site-header {
+        padding: 40px 0 32px;
+    }
+
+    /* KPI 3 kolom → 1 kolom di HP */
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* chart baris → tumpuk ke bawah di HP */
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* chart wrap lebih pendek di HP supaya muat di layar kecil */
+    .chart-wrap {
+        height: 250px;
+    }
+
+    .chart-wrap--donut {
+        height: 220px;
+    }
+
+    /* filter dropdown lebar penuh di HP */
+    .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}

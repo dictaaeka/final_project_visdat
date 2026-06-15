@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Kemiskinan Indonesia Tahun 2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- chart js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-badge">BPS · 2024</div>
+            <h1 class="site-title">Potret Kemiskinan<br /><em>Indonesia</em></h1>
+            <p class="site-desc">
+                Persentase penduduk miskin per provinsi berdasarkan data
+                Badan Pusat Statistik semester Maret &amp; September 2024.
+            </p>
+        </div>
+    </header>
+
+    <section class="kpi-section">
+        <div class="container">
+            <div class="kpi-grid">
+
+                <!-- KPI 1: Rata rata kemiskinan nasional sept 2024 -->
+                <div class="kpi-card">
+                    <span class="kpi-label">Rata-rata Nasional</span>
+                    <!-- data target = nilai akhir yang dituju animasi-->
+                    <span class="kpi-value count-up" data-target="8.57">0</span>
+                    <span class="kpi-unit">% (Sept 2024)</span>
+                </div>
+
+                <!-- KPI 2: Provinsi Termiskin Tertinggi -->
+                <div class="kpi-card kpi-card--danger">
+                    <span class="kpi-label">Provinsi dengan Kemiskinan Tertinggi</span>
+                    <span class="kpi-value" id="kpi-tertinggi">-</span>
+                    <span class="kpi-unit" id="kpi-tertinggi-prov">memuat...</span>
+                </div>
+
+                <!-- KPI 3: Provinsi Termiskin Terendah-->
+                <div class="kpi-card kpi-card--good">
+                    <span class="kpi-label">Provinsi dengan Kemiskinan Terendah</span>
+                    <span class="kpi-value" id="kpi-terendah">-</span>
+                    <span class="kpi-unit" id="kpi-terendah-prov">memuat...</span>
+                </div>
+    </section>
+
+    <!-- filter dropdown untuk mengganti wilayah pulau -->
+    <!-- waktu user pilih opsi, nnti chart bar dan line ke update otomatis -->
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <label for="filter-pulau" class="filter-label">Tampilkan Wilayah:</label>
+                <select id="filter-pulau" class="flter-select">
+                    <option value="semua">Semua Provinsi</option>
+                    <option value="sumatera">Sumatera</option>
+                    <option value="java">Jawa</option>
+                    <option value="bali_dan_nusa_tenggara">Bali &amp; Nusa Tenggara</option>
+                    <option value="kalimantan">Kalimantan</option>
+                    <option value="sulawesi">Sulawesi</option>
+                    <option value="maluku_dan_papua">Maluku &amp;Papua</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content/chart utama -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- chart 1 (bar) dan chart 2 (doughnut)-->
+            <div class="charts-row">
+
+                <!-- chart bar untuk kemiskinan per provinsi -->
+                <div class="chart-card chart-card--wide">
+                    <div class="chart-card-header">
+                        <h2 class="chart-title">Kemiskinan per Provinsi</h2>
+                        <p class="chart-subtitle">Persentase total penduduk miskin, per September 2024
+                            (<span id="label-filter-aktif">Semua Provinsi</span>)
+                        </p>
+                    </div>
+
+                    <!-- canvas = tempat chart.js buat chart-->
+                    <div class="chart-wrap">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- chart doughnut untuk distribusi kemiskinan -->
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h2 class="chart-title">Distribusi per Provinsi</h2>
+                        <p class="chart-subtitle">rata-Rata kemiskinan per kawasan, per September 2024</p>
+                    </div>
+
+                    <!-- canvas = tempat chart.js buat chart-->
+                    <div class="chart-wrap chart-wrap--donut">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- chart 3 (line) -->
+            <div class="charts-row">
+                <div class="chart-card chart-card--full">
+                    <div class="chart-card-header">
+                        <h2 class="chart-title">Tren Maret vs September 2024</h2>
+                        <p class="chart-subtitle">
+                            Perbandingan kemiskinan perkotaan &amp; perdesaan antar semester
+                            (<span id="label-filter-aktif-line">Semua Provinsi</span>)
+                        </p>
+                    </div>
+                    <div class="chart-wrap">
+                        <canvas id="chartLine"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer (sumber data) -->
+    <footer class="site-footer">
+        <div class="container">
+            <p class="footer-source">
+                <strong>Sumber Data:</strong>
+                Badan Pusat Statistik (BPS) — Persentase Penduduk Miskin (P0) Menurut Provinsi dan Daerah, 2024.
+                <a href="https://www.bps.go.id/id/statistics-table/2/MTkylzl=/persentase-penduduk-miskin--p0--menurut-provinsi-dan-daerah.html"
+                    target="_blank" rel="noopener">bps.go.id →</a>
+            </p>
+            <p class="footer-note">Dashboard dibuat untuk keperluan akademik · Visualisasi Data · Telkom University 2024
+            </p>
+        </div>
+    </footer>
+
+    <!-- load data, baru logika chart -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
